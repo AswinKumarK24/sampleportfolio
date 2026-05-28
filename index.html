@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI-Powered Web Developer Portfolio</title>
+    <meta name="description" content="Portfolio of an AI-powered web developer and computer science student.">
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Custom styles for dark mode and antigravity effects */
+        body {
+            background-color: #020617;
+            color: #e2e8f0;
+            scroll-behavior: smooth;
+        }
+        .nav-link {
+            position: relative;
+            transition: color 0.25s ease, text-shadow 0.25s ease;
+        }
+        .nav-link:hover {
+            color: #7dd3fc;
+            text-shadow: 0 0 18px rgba(125, 211, 252, 0.8);
+        }
+        .btn-glow {
+            background: linear-gradient(135deg, #22d3ee 0%, #2563eb 100%);
+            box-shadow: 0 0 30px rgba(37, 99, 235, 0.25);
+            transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+        }
+        .btn-glow:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 20px 60px rgba(37, 99, 235, 0.25);
+        }
+        .card {
+            background: rgba(15, 23, 42, 0.94);
+            border: 1px solid rgba(148, 163, 184, 0.18);
+            box-shadow: 0 20px 40px rgba(15, 23, 42, 0.35);
+            backdrop-filter: blur(12px);
+            transition: transform 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease;
+        }
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 30px 70px rgba(56, 189, 248, 0.18);
+            border-color: rgba(56, 189, 248, 0.3);
+        }
+        .badge-wip {
+            background-color: #ef4444;
+            color: #f8fafc;
+        }
+        .floating-orb,
+        .floating-ring {
+            position: absolute;
+            filter: blur(24px);
+            opacity: 0.65;
+            animation: float 8s ease-in-out infinite;
+            pointer-events: none;
+        }
+        .floating-orb {
+            width: 220px;
+            height: 220px;
+            border-radius: 9999px;
+            background: radial-gradient(circle at 20% 20%, rgba(34, 211, 238, 0.45), transparent 55%);
+            top: -40px;
+            right: -40px;
+        }
+        .floating-ring {
+            width: 320px;
+            height: 320px;
+            border-radius: 9999px;
+            border: 2px solid rgba(59, 130, 246, 0.25);
+            top: 40%;
+            left: -120px;
+            animation-duration: 10s;
+        }
+        .hero-bg {
+            position: absolute;
+            inset: 0;
+            overflow: hidden;
+            z-index: -1;
+        }
+        .hero-bg::before {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 110%;
+            height: 110%;
+            background: radial-gradient(circle at center, rgba(56, 189, 248, 0.14), transparent 45%);
+            transform: translate(-50%, -50%);
+        }
+        .hero-bg::after {
+            content: "";
+            position: absolute;
+            bottom: -80px;
+            right: -80px;
+            width: 260px;
+            height: 260px;
+            background: radial-gradient(circle, rgba(168, 85, 247, 0.2), transparent 55%);
+            border-radius: 9999px;
+        }
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-18px);
+            }
+        }
+    </style>
+</head>
+<body class="font-sans">
+    <!-- Navigation Bar -->
+    <nav class="sticky top-0 z-50 bg-slate-900 shadow-lg">
+        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <h1 class="text-xl font-bold text-slate-100">Portfolio</h1>
+            <ul class="hidden md:flex space-x-6">
+                <li><a href="#about" class="nav-link text-slate-300 hover:text-blue-400">About</a></li>
+                <li><a href="#services" class="nav-link text-slate-300 hover:text-blue-400">Services</a></li>
+                <li><a href="#projects" class="nav-link text-slate-300 hover:text-blue-400">Projects</a></li>
+                <li><a href="#skills" class="nav-link text-slate-300 hover:text-blue-400">Skills</a></li>
+                <li><a href="#contact" class="nav-link text-slate-300 hover:text-blue-400">Contact</a></li>
+            </ul>
+            <!-- Mobile Menu Button -->
+            <button id="mobile-menu-btn" class="md:hidden text-slate-300">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-slate-800 px-4 py-2">
+            <ul class="space-y-2">
+                <li><a href="#about" class="block nav-link text-slate-300 hover:text-blue-400">About</a></li>
+                <li><a href="#services" class="block nav-link text-slate-300 hover:text-blue-400">Services</a></li>
+                <li><a href="#projects" class="block nav-link text-slate-300 hover:text-blue-400">Projects</a></li>
+                <li><a href="#skills" class="block nav-link text-slate-300 hover:text-blue-400">Skills</a></li>
+                <li><a href="#contact" class="block nav-link text-slate-300 hover:text-blue-400">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="relative py-24 px-4 text-center overflow-hidden">
+        <div class="hero-bg"></div>
+        <div class="floating-orb"></div>
+        <div class="floating-ring"></div>
+        <div class="container mx-auto max-w-4xl relative z-10">
+            <h1 class="text-4xl md:text-6xl font-bold text-slate-100 mb-4 leading-tight">
+                AI-Powered Web Developer & Computer Science Student
+            </h1>
+            <p class="text-xl md:text-2xl text-slate-300 mb-10 max-w-3xl mx-auto">
+                I build fast, functional websites using AI and write clear, technical content. Currently studying CSE and building the next generation of web tools.
+            </p>
+            <a href="#projects" class="btn-glow inline-block text-white px-8 py-4 rounded-full font-semibold shadow-lg hover:bg-blue-500">
+                View My Work
+            </a>
+        </div>
+    </section>
+
+    <!-- About Me Section -->
+    <section id="about" class="py-16 px-4">
+        <div class="container mx-auto max-w-4xl">
+            <h2 class="text-3xl font-bold text-slate-100 mb-8 text-center">About Me</h2>
+            <div class="text-lg text-slate-300 space-y-6">
+                <p>
+                    As a second-year Computer Science Engineering student, I combine a strong foundation in core computer science principles with cutting-edge AI web development techniques. My passion lies in leveraging artificial intelligence to streamline the web development process, creating efficient and innovative solutions that bridge the gap between technology and user experience.
+                </p>
+                <p>
+                    When I'm not coding or diving deep into academic studies, you'll find me immersed in the world of cinema, exploring diverse films and storytelling techniques. Music is another constant companion, fueling my creativity and providing inspiration for my projects. These interests not only enrich my personal life but also influence my approach to design and user experience in web development.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="py-16 px-4 bg-slate-800">
+        <div class="container mx-auto max-w-6xl">
+            <h2 class="text-3xl font-bold text-slate-100 mb-12 text-center">Services</h2>
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="card p-6 rounded-lg">
+                    <i class="fas fa-robot text-4xl text-blue-400 mb-4"></i>
+                    <h3 class="text-xl font-semibold text-slate-100 mb-2">AI Website Development</h3>
+                    <p class="text-slate-300">
+                        Rapid deployment of highly functional, responsive websites using AI tools. I harness the power of artificial intelligence to accelerate development cycles while maintaining high-quality, user-centric designs.
+                    </p>
+                </div>
+                <div class="card p-6 rounded-lg">
+                    <i class="fas fa-pen-fancy text-4xl text-green-400 mb-4"></i>
+                    <h3 class="text-xl font-semibold text-slate-100 mb-2">Technical Content Writing</h3>
+                    <p class="text-slate-300">
+                        Clear, engaging articles and documentation on tech and software architecture. I craft comprehensive technical content that demystifies complex concepts and provides valuable insights for developers and businesses alike.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="py-16 px-4">
+        <div class="container mx-auto max-w-6xl">
+            <h2 class="text-3xl font-bold text-slate-100 mb-12 text-center">Projects</h2>
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="card p-6 rounded-lg relative">
+                    <span class="badge-wip absolute top-4 right-4 px-2 py-1 rounded text-sm font-semibold">Work in Progress</span>
+                    <i class="fas fa-cubes text-4xl text-purple-400 mb-4"></i>
+                    <h3 class="text-xl font-semibold text-slate-100 mb-2">Drag-and-Drop Website Builder</h3>
+                    <p class="text-slate-300">
+                        A custom website builder that applies core programming logic to simplify web design. This project focuses on creating an intuitive interface for non-technical users to build professional websites through drag-and-drop functionality.
+                    </p>
+                </div>
+                <div class="card p-6 rounded-lg">
+                    <i class="fas fa-chart-line text-4xl text-orange-400 mb-4"></i>
+                    <h3 class="text-xl font-semibold text-slate-100 mb-2">Customer Churn Prediction</h3>
+                    <p class="text-slate-300">
+                        An academic machine learning project utilizing algorithms like SVM and clustering to extract data insights. This project analyzes customer behavior patterns to predict churn rates and provide actionable business intelligence.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="py-16 px-4 bg-slate-800">
+        <div class="container mx-auto max-w-4xl">
+            <h2 class="text-3xl font-bold text-slate-100 mb-12 text-center">Skills</h2>
+            <div class="flex flex-wrap justify-center gap-4">
+                <span class="bg-blue-600 text-white px-4 py-2 rounded-full font-semibold">HTML/CSS</span>
+                <span class="bg-yellow-600 text-white px-4 py-2 rounded-full font-semibold">JavaScript</span>
+                <span class="bg-purple-600 text-white px-4 py-2 rounded-full font-semibold">AI Website Builders</span>
+                <span class="bg-green-600 text-white px-4 py-2 rounded-full font-semibold">Technical Writing</span>
+                <span class="bg-red-600 text-white px-4 py-2 rounded-full font-semibold">Machine Learning</span>
+                <span class="bg-indigo-600 text-white px-4 py-2 rounded-full font-semibold">Computer Networks</span>
+                <span class="bg-pink-600 text-white px-4 py-2 rounded-full font-semibold">Computer Organization & Architecture</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-16 px-4">
+        <div class="container mx-auto max-w-4xl">
+            <h2 class="text-3xl font-bold text-slate-100 mb-12 text-center">Contact / Freelance</h2>
+            <form id="contact-form" class="card p-8 rounded-lg mb-8">
+                <div class="mb-4">
+                    <label for="name" class="block text-slate-300 mb-2">Name</label>
+                    <input type="text" id="name" name="name" class="w-full px-4 py-2 bg-slate-700 text-slate-100 rounded border border-slate-600 focus:outline-none focus:border-blue-400" required>
+                </div>
+                <div class="mb-4">
+                    <label for="email" class="block text-slate-300 mb-2">Email</label>
+                    <input type="email" id="email" name="email" class="w-full px-4 py-2 bg-slate-700 text-slate-100 rounded border border-slate-600 focus:outline-none focus:border-blue-400" required>
+                </div>
+                <div class="mb-6">
+                    <label for="message" class="block text-slate-300 mb-2">Message</label>
+                    <textarea id="message" name="message" rows="5" class="w-full px-4 py-2 bg-slate-700 text-slate-100 rounded border border-slate-600 focus:outline-none focus:border-blue-400" required></textarea>
+                </div>
+                <button type="submit" class="btn-glow w-full bg-blue-600 text-white py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors">
+                    Send Message
+                </button>
+            </form>
+            <div class="text-center">
+                <p class="text-slate-300 mb-4">Available for freelance work on:</p>
+                <div class="flex justify-center space-x-6">
+                    <a href="#" class="text-green-400 hover:text-green-300 transition-colors">
+                        <i class="fab fa-fiverr text-3xl"></i>
+                    </a>
+                    <a href="#" class="text-blue-400 hover:text-blue-300 transition-colors">
+                        <i class="fab fa-upwork text-3xl"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-slate-900 py-8 px-4 text-center">
+        <p class="text-slate-400">&copy; 2024 AI-Powered Web Developer. All rights reserved.</p>
+    </footer>
+
+    <!-- JavaScript for interactivity -->
+    <script>
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Form submission (simple alert for demo)
+        const contactForm = document.getElementById('contact-form');
+        contactForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            alert('Thank you for your message! I will get back to you soon.');
+            contactForm.reset();
+        });
+    </script>
+</body>
+</html>
